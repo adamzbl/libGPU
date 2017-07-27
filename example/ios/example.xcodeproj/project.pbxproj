@@ -29,6 +29,7 @@
 		C8B610421EE9850A00CF9D57 /* z1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C8B6103F1EE9850A00CF9D57 /* z1.jpeg */; };
 		C8DACD2E1ED4684A001F607A /* facepoints.json in Resources */ = {isa = PBXBuildFile; fileRef = C8DACD2B1ED4684A001F607A /* facepoints.json */; };
 		C8EB12CE1ED70B5000D72F8F /* EdgeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8EB12CD1ED70B5000D72F8F /* EdgeViewController.mm */; };
+		CD04F91E1F29E3B600E97945 /* squares.png in Resources */ = {isa = PBXBuildFile; fileRef = CD04F91D1F29E3B600E97945 /* squares.png */; };
 		CD0661301F21CC5B00098365 /* liblibGPU.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06612D1F21CC4C00098365 /* liblibGPU.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		C8DACD2B1ED4684A001F607A /* facepoints.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = facepoints.json; sourceTree = "<group>"; };
 		C8EB12CC1ED70B5000D72F8F /* EdgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeViewController.h; sourceTree = "<group>"; };
 		C8EB12CD1ED70B5000D72F8F /* EdgeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EdgeViewController.mm; sourceTree = "<group>"; };
+		CD04F91D1F29E3B600E97945 /* squares.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squares.png; sourceTree = "<group>"; };
 		CD0661281F21CC4C00098365 /* libGPU.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libGPU.xcodeproj; path = ../../src/libGPU.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				C8B6103F1EE9850A00CF9D57 /* z1.jpeg */,
+				CD04F91D1F29E3B600E97945 /* squares.png */,
 				C8A0ADE31ECFE5A10043ADE9 /* AppDelegate.h */,
 				C8A0ADE41ECFE5A10043ADE9 /* AppDelegate.m */,
 				C8A0ADEC1ECFE5A10043ADE9 /* Assets.xcassets */,
@@ -211,7 +214,7 @@
 				TargetAttributes = {
 					C8A0ADDC1ECFE5A10043ADE9 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = TWA5QS8JFT;
+						DevelopmentTeam = WR3YC4QDYV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -257,6 +260,7 @@
 			files = (
 				C8A0ADF01ECFE5A10043ADE9 /* LaunchScreen.storyboard in Resources */,
 				C8B610421EE9850A00CF9D57 /* z1.jpeg in Resources */,
+				CD04F91E1F29E3B600E97945 /* squares.png in Resources */,
 				C8A0ADED1ECFE5A10043ADE9 /* Assets.xcassets in Resources */,
 				C8A0ADEB1ECFE5A10043ADE9 /* Main.storyboard in Resources */,
 				C8DACD2E1ED4684A001F607A /* facepoints.json in Resources */,
@@ -401,9 +405,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TWA5QS8JFT;
+				DEVELOPMENT_TEAM = WR3YC4QDYV;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../src/output/include";
 				INFOPLIST_FILE = example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rex.example;
@@ -415,9 +420,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TWA5QS8JFT;
+				DEVELOPMENT_TEAM = WR3YC4QDYV;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../src/output/include";
 				INFOPLIST_FILE = example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rex.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";

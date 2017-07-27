@@ -183,7 +183,7 @@ void GPUProgram::setFloat(const char* name, GLfloat* val, int num){
 	GLint index = uniformIndex(name);
 	if(index >= 0) {
 		switch(num){
-		case 1:	glUniform1f(index, *val);
+        case 1:	glUniform1f(index, *val);
 				break;
         case 2:	glUniform2fv(index, 1, val);
 				break;

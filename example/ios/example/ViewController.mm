@@ -12,7 +12,10 @@
 
 @interface ViewController (){
     GPUPaintFilter* line;
+    GPUMosaicFilter *mosaic;
     GPUIOSView* view;
+    GPUPicture* pic;
+    float param;
 }
 
 @end
@@ -23,30 +26,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     bs_log_init("stdout");
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"kaiwen2" ofType:@"png"];
-    GPUPicture* pic = new GPUPicture(path.UTF8String);
-    GPUFilter* filter = new GPUFilter();
-    
-    pic->addTarget(filter);
-    pic->processImage();
-    
-    line = new GPUPaintFilter();
+  
     view = new GPUIOSView(self.view.bounds);
     [self.view addSubview:view->uiview()];
-    
-    //line->setOutputFrameBuffer(filter->m_outbuffer);
-    line->addTarget(view);
-    
-    line->clear();
-    gpu_colorf_t c0 = {0.0, 0.0, 0.0, 1.0};
-    gpu_colorf_t c1 = {0.5, 0.5, 0.5, 0.8};
-    line->setColors(c0, c1);
-    line->setLineWidth(3);
-    
-    [self paintFace];
-    line->newFrame();
-    
+
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"z1" ofType:@"jpeg"];
+    pic = new GPUPicture(path.UTF8String);
+    mosaic = new GPUMosaicFilter(720,1080);
+  
+  
+    NSString* paths = [[NSBundle mainBundle] pathForResource:@"squares" ofType:@"png"];
+    GPUPicture *square = new GPUPicture(paths.UTF8String);
+    square->addTarget(mosaic);
+    square->processImage();
+  
+    pic->addTarget(mosaic);
+    mosaic->addTarget(view);
+  
+    pic->processImage();
+
     // 循环画
     //[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(newFrame) userInfo:nil repeats:YES];
 }
@@ -233,6 +231,21 @@
 
 -(void)newFrame{
     line->newFrame();
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+  param += 1;
+  mosaic->setExtraParameter(param);
+  pic->processImage();
+  NSLog(@"%f",param);
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+  param = 1;
+  mosaic->setExtraParameter(param);
+  pic->processImage();
 }
 
 - (void)didReceiveMemoryWarning {
