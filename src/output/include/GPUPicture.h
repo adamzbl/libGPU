@@ -14,13 +14,13 @@
 #include "GPUOutput.h"
 #include "GPUFrameBuffer.h"
 
-class GPUPicture: public GPUOutput{
+class GPUPicture: public GPUOutput {
 public:
-	GPUPicture(const char* path);
+    GPUPicture(const char* path);
     GPUPicture(uint8_t * data, uint32_t size);
     GPUPicture(uint8_t * data, int width, int height);
 #if __IOS__
-	GPUPicture(void* cgImageRef);
+    GPUPicture(void* cgImageRef);
     // pathForResource路径初始化
     GPUPicture(const char* file, const char* type);
 #endif

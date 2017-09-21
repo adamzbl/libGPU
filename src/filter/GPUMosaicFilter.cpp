@@ -13,18 +13,19 @@ const static char* g_mosaic_fragment_shader = SHADER_STRING (
    varying vec2 textureCoordinate;
    uniform float texWidth;
    uniform float texHeight;
-   const vec2 mosaicSize = vec2(20., 20.);
-   
+   uniform float mosaicSizeX;
+   uniform float mosaicSizeY;
+
    void main(void)
    {
      vec4 color;
      vec2 xy = vec2(textureCoordinate.x * texWidth, textureCoordinate.y * texHeight);
      
-     vec2 xyMosaic = vec2(floor(xy.x / mosaicSize.x) * mosaicSize.x,
-                          floor(xy.y / mosaicSize.y) * mosaicSize.y );
+     vec2 xyMosaic = vec2(floor(xy.x / mosaicSizeX) * mosaicSizeX,
+                          floor(xy.y / mosaicSizeY) * mosaicSizeY );
      
-     vec2 xyFloor = vec2(floor(mod(xy.x, mosaicSize.x)),
-                         floor(mod(xy.y, mosaicSize.y)));
+     vec2 xyFloor = vec2(floor(mod(xy.x, mosaicSizeX)),
+                         floor(mod(xy.y, mosaicSizeY)));
      {  
        vec2 uvMosaic = vec2(xyMosaic.x / texWidth, xyMosaic.y / texHeight);
        color = texture2D( inputImageTexture, uvMosaic );
@@ -35,7 +36,14 @@ const static char* g_mosaic_fragment_shader = SHADER_STRING (
 
 );
 
-GPUMosaicFilter::GPUMosaicFilter(float width, float height):GPUFilter(g_mosaic_fragment_shader){
+GPUMosaicFilter::GPUMosaicFilter(float width, float height, float size):GPUFilter(g_mosaic_fragment_shader){
   setFloat("texWidth", width);
   setFloat("texHeight", height);
+  setFloat("mosaicSizeX", size);
+  setFloat("mosaicSizeY", size);
+}
+
+void GPUMosaicFilter::setExtraParameter(float p) {
+  setFloat("mosaicSizeX", p);
+  setFloat("mosaicSizeY", p);
 }

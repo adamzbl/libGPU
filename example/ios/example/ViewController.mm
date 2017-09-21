@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "GPUIOSView.h"
-#include "GPU.h"
+#include "GPUMosaicManager.h"
 
 @interface ViewController (){
     GPUPaintFilter* line;
@@ -16,6 +16,7 @@
     GPUIOSView* view;
     GPUPicture* pic;
     float param;
+    uint8_t *buffer;
 }
 
 @end
@@ -29,26 +30,17 @@
   
     view = new GPUIOSView(self.view.bounds);
     [self.view addSubview:view->uiview()];
-
+  
     NSString* path = [[NSBundle mainBundle] pathForResource:@"z1" ofType:@"jpeg"];
-    pic = new GPUPicture(path.UTF8String);
-    mosaic = new GPUMosaicFilter(720,1080);
   
+  GPUMosaicManager *manager = new GPUMosaicManager(path.UTF8String);
   
-    NSString* paths = [[NSBundle mainBundle] pathForResource:@"squares" ofType:@"png"];
-    GPUPicture *square = new GPUPicture(paths.UTF8String);
-    square->addTarget(mosaic);
-    square->processImage();
-  
-    pic->addTarget(mosaic);
-    mosaic->addTarget(view);
-  
-    pic->processImage();
+  uint8_t *buffer = manager->getMosaicBuffer();
+  printf("buffer");
+  delete manager;
 
-    // 循环画
-    //[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(newFrame) userInfo:nil repeats:YES];
 }
--(void)paintFace{
+-(void)paintFace {
     NSString* face_string = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"facepoints" ofType:@"json"]];
     NSData *resData = [[NSData alloc] initWithData:[face_string dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -235,7 +227,10 @@
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-  param += 1;
+  param -= 5;
+  if (param <= 1) {
+    param = 1;
+  }
   mosaic->setExtraParameter(param);
   pic->processImage();
   NSLog(@"%f",param);
@@ -243,7 +238,7 @@
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-  param = 1;
+  param = 80;
   mosaic->setExtraParameter(param);
   pic->processImage();
 }
@@ -253,5 +248,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+//uint8_t* rawData, uint32_t size
+unsigned char* processImageByMosaicFilter(const char * path)
+{
+  GPUPicture *pic = new GPUPicture(path);
+  
+  GPUMosaicFilter *mosaic = new GPUMosaicFilter(pic->m_image_size.width,pic->m_image_size.height);
+  GPURawOutput *output = new GPURawOutput();
+
+  pic->addTarget(mosaic);
+  mosaic->addTarget(output);
+  pic->processImage();
+
+  static unsigned char *buffer = output->getBuffer();
+  
+  output->removeAllSources();
+  delete output;
+  mosaic->removeAllTargets();
+  delete mosaic;
+  pic->removeAllTargets();
+  delete pic;
+  
+  return  buffer;
+}
 
 @end

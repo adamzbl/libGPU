@@ -31,6 +31,7 @@
 		C8EB12CE1ED70B5000D72F8F /* EdgeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8EB12CD1ED70B5000D72F8F /* EdgeViewController.mm */; };
 		CD04F91E1F29E3B600E97945 /* squares.png in Resources */ = {isa = PBXBuildFile; fileRef = CD04F91D1F29E3B600E97945 /* squares.png */; };
 		CD0661301F21CC5B00098365 /* liblibGPU.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06612D1F21CC4C00098365 /* liblibGPU.a */; };
+		CDB97C6D1F73A68D0012B68A /* GPUMosaicManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB97C6B1F73A68D0012B68A /* GPUMosaicManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		C8EB12CD1ED70B5000D72F8F /* EdgeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EdgeViewController.mm; sourceTree = "<group>"; };
 		CD04F91D1F29E3B600E97945 /* squares.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squares.png; sourceTree = "<group>"; };
 		CD0661281F21CC4C00098365 /* libGPU.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libGPU.xcodeproj; path = ../../src/libGPU.xcodeproj; sourceTree = "<group>"; };
+		CDB97C6B1F73A68D0012B68A /* GPUMosaicManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GPUMosaicManager.cpp; sourceTree = "<group>"; };
+		CDB97C6C1F73A68D0012B68A /* GPUMosaicManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUMosaicManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 				C8A0ADE01ECFE5A10043ADE9 /* Supporting Files */,
 				C8A0ADE61ECFE5A10043ADE9 /* ViewController.h */,
 				C8A0ADE71ECFE5A10043ADE9 /* ViewController.mm */,
+				CDB97C6C1F73A68D0012B68A /* GPUMosaicManager.h */,
+				CDB97C6B1F73A68D0012B68A /* GPUMosaicManager.cpp */,
 			);
 			path = example;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB97C6D1F73A68D0012B68A /* GPUMosaicManager.cpp in Sources */,
 				C8A0ADE81ECFE5A10043ADE9 /* ViewController.mm in Sources */,
 				C8A0ADE51ECFE5A10043ADE9 /* AppDelegate.m in Sources */,
 				C8A0ADE21ECFE5A10043ADE9 /* main.m in Sources */,

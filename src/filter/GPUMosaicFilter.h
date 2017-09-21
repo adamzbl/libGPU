@@ -14,6 +14,7 @@
 
 class GPUMosaicFilter : public GPUFilter {
 public:
-  GPUMosaicFilter(float width = 640, float height = 640);
+  GPUMosaicFilter(float width = 640, float height = 640, float size = 80.0);
+  virtual void setExtraParameter(float p);
 };
 #endif /* GPUMosaicFilter_h */
